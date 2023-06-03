@@ -7,7 +7,7 @@ docker-compose up -d
 ```
 #### Composer install
 ```shell
-docker-compose exec php composer install
+docker-compose exec php composer install --no-dev --optimize-autoloader
 ```
 #### Execute migrations
 ```shell
