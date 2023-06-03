@@ -17,7 +17,7 @@ WORKDIR /var/www/html
 
 COPY composer.json .
 
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader
 
 COPY . .
 
