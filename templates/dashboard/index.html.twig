@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ username }}!{% endblock %}
+
+{% block body %}
+<div class="max-w-4xl mx-auto px-6">
+    <div class="bg-white shadow-xl overflow-hidden rounded-b-xl p-6">
+        <table class="border-collapse table-auto w-full text-sm">
+            <thead class="text-left">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Created at</th>
+            </tr>
+            </thead>
+            <tbody class="text-left">
+                <tr>
+                    <td class="border-b border-slate-100 py-4">{{ username|e }}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <span class="italic text-sm">(administrator)</span>
+                        {% endif %}
+                    </td>
+                    <td class="border-b border-slate-100 py-4">{{ email }}</td>
+                    <td class="border-b border-slate-100 py-4">{{ createdAt | date('Y-m-d') }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mt-6 flex justify-between items-center">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_admin') }}" class="text-white bg-neutral-500 hover:bg-primary-700 focus:ring-2 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Manage users</a>
+            {% endif %}
+            <a href="{{ path('app_logout') }}" class="text-white bg-neutral-500 hover:bg-primary-700 focus:ring-2 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

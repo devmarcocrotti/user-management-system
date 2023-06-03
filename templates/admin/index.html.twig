@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin page{% endblock %}
+
+{% block body %}
+<div class="max-w-4xl mx-auto px-6">
+    <div class="bg-white shadow-xl overflow-hidden rounded-b-xl p-6">
+        <table class="border-collapse table-auto w-full text-sm">
+            <thead class="text-left">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Created at</th>
+                <th>View</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody class="text-left">
+                {% for user in users %}
+                    <tr>
+                        <td class="border-b border-slate-100 py-4">{{ user.username|e }}</td>
+                        <td class="border-b border-slate-100 py-4">{{ user.email }}</td>
+                        <td class="border-b border-slate-100 py-4">{{ user.createdAt | date('Y-m-d') }}</td>
+                        <td class="border-b border-slate-100 py-4"><a class="underline" href="{{ path('app_view_profile', {'uuid': user.uuid}) }}">View</a></td>
+                        <td class="border-b border-slate-100 py-4"><a class="underline" href="{{ path('app_edit_profile', {'uuid': user.uuid}) }}">Edit</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+
+        </div>
+        <div class="mt-6 flex justify-between items-center">
+            <div>
+                {%  if pagination.currentPage > 1 %}
+                    <a href="{{ path('app_admin', {'page': pagination.currentPage - 1}) }}" class="text-white bg-neutral-500 hover:bg-primary-700 focus:ring-2 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Prev</a>
+                {% endif %}
+                {%  if pagination.pagesCount > 1 and pagination.currentPage < pagination.pagesCount %}
+                    <a href="{{ path('app_admin', {'page': pagination.currentPage + 1}) }}" class="text-white bg-neutral-500 hover:bg-primary-700 focus:ring-2 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Next</a>
+                {% endif %}
+            </div>
+            <div>
+                <a href="{{ path('app_main') }}" class="text-white bg-neutral-500 hover:bg-primary-700 focus:ring-2 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">My Profile</a>
+                <a href="{{ path('app_logout') }}" class="text-white bg-neutral-500 hover:bg-primary-700 focus:ring-2 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
