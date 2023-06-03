@@ -5,6 +5,10 @@ To set up and run locally, make sure you have Git and Docker installed on your s
 ```shell
 docker-compose up -d
 ```
+#### Composer install
+```shell
+docker-compose exec php composer install
+```
 #### Execute migrations
 ```shell
 docker-compose exec php bin/console doctrine:migrations:migrate --no-interaction
