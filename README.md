@@ -30,5 +30,5 @@ password: admin
 - `/` | Dashboard - show logged user info
 - `/logout` | Logout route
 - `/admin` | Reserved to admin - Show users list 
-- `/admin/profile/{{uuid}` | Reserved to admin - Show user info
-- `/admin/profile/{{uuid}/edit` | Reserved to admin - Edit user email
+- `/admin/profile/{{uuid}}` | Reserved to admin - Show user info
+- `/admin/profile/{{uuid}}/edit` | Reserved to admin - Edit user email
